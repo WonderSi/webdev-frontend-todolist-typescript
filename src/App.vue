@@ -1,20 +1,19 @@
 <template>
-    <router-view/>
+  <router-view />
 </template>
 
-<script setup  lang="ts">
-    import { onMounted } from 'vue'
-    import { useUserStore } from '@/stores/useUserStore'
-    import { useThemeStore } from '@/stores/useThemeStore'
+<script setup lang="ts">
+  import { onMounted } from 'vue'
+  import { useUserStore } from '@/stores/useUserStore'
+  import { useThemeStore } from '@/stores/useThemeStore'
 
-    const userStore = useUserStore()
-    const themeStore = useThemeStore()
+  const userStore = useUserStore()
+  const themeStore = useThemeStore()
 
-    onMounted(() => {
-        userStore.init()
-        themeStore.init()
-    })
+  onMounted(() => {
+    userStore.init()
+    themeStore.init()
+  })
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

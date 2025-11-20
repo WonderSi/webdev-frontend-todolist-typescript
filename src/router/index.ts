@@ -1,57 +1,57 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
-import { useUserStore } from "@/stores/useUserStore"
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { useUserStore } from '@/stores/useUserStore'
 
 declare module 'vue-router' {
-    interface RouteMeta {
-        requiresAuth?: boolean
-        requiresGuest?: boolean
-    }
+  interface RouteMeta {
+    requiresAuth?: boolean
+    requiresGuest?: boolean
+  }
 }
 
 const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/login',
-        name: 'Login',
-        component: () => import('@/page/LoginPage.vue'),
-        meta: { requiresGuest: true }
-    },
-    {
-        path: '/register',
-        name: 'Register',
-        component: () => import('@/page/RegisterPage.vue'),
-        meta: { requiresGuest: true }
-    },
-    {
-        path: '/',
-        name: 'Todo',
-        component: () => import('@/page/TodoPage.vue'),
-        meta: { requiresAuth: true }
-    },
-    {
-        path: '/about',
-        name: 'About',
-        component: () => import('@/page/AboutPage.vue'),
-        meta: { requiresGuest: true }
-    }
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/page/LoginPage.vue'),
+    meta: { requiresGuest: true }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/page/RegisterPage.vue'),
+    meta: { requiresGuest: true }
+  },
+  {
+    path: '/',
+    name: 'Todo',
+    component: () => import('@/page/TodoPage.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('@/page/AboutPage.vue'),
+    meta: { requiresGuest: true }
+  }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes
+  history: createWebHistory(),
+  routes
 })
 
 router.beforeEach((to, from, next) => {
-    const userStore = useUserStore()
+  const userStore = useUserStore()
 
-    userStore.init()
+  userStore.init()
 
-    if (to.meta.requiresAuth && !userStore.isAuthenticated) {
-        next('/login')
-    } else if (to.meta.requiresGuest && userStore.isAuthenticated) {
-        next('/')
-    } else {
-        next()
-    }
+  if (to.meta.requiresAuth && !userStore.isAuthenticated) {
+    next('/login')
+  } else if (to.meta.requiresGuest && userStore.isAuthenticated) {
+    next('/')
+  } else {
+    next()
+  }
 })
 
 export default router

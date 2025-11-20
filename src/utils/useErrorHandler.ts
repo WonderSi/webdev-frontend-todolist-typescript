@@ -1,57 +1,57 @@
-import { ref, reactive, onUnmounted } from "vue"
+import { ref, reactive, onUnmounted } from 'vue'
 
 const ERROR_DISPLAY_DURATION = 3000
 
 type FieldErrors = {
-    email: boolean;
-    password: boolean;
-    confirmPassword: boolean;
-    [key: string]: boolean;
+  email: boolean
+  password: boolean
+  confirmPassword: boolean
+  [key: string]: boolean
 }
 
 export function useErrorHandler() {
-    const error = ref<string>('')
-    const errors = reactive<FieldErrors>({
-        email: false,
-        password: false,
-        confirmPassword: false
-    })
+  const error = ref<string>('')
+  const errors = reactive<FieldErrors>({
+    email: false,
+    password: false,
+    confirmPassword: false
+  })
 
-    let errorTimeout: ReturnType<typeof setTimeout> | null = null
+  let errorTimeout: ReturnType<typeof setTimeout> | null = null
 
-    const clearErrorTimeout = () => {
-        if (errorTimeout) {
-            clearTimeout(errorTimeout)
-            errorTimeout = null
-        }
+  const clearErrorTimeout = () => {
+    if (errorTimeout) {
+      clearTimeout(errorTimeout)
+      errorTimeout = null
+    }
+  }
+
+  const setError = (message: string, field: string | null = null) => {
+    clearErrorTimeout()
+
+    Object.keys(errors).forEach((key) => (errors[key] = false))
+
+    error.value = message
+    if (field && field in errors) {
+      errors[field] = true
     }
 
-    const setError = (message: string, field: string | null = null) => {
-        clearErrorTimeout()
-
-        Object.keys(errors).forEach(key => errors[key] = false)
-
-        error.value = message
-        if (field && field in errors) {
-            errors[field] = true
-        }
-
-        if (message) {
-            errorTimeout = setTimeout(() => {
-                error.value = ''
-                Object.keys(errors).forEach(key => errors[key] = false)
-                errorTimeout = null
-            }, ERROR_DISPLAY_DURATION)
-        }
-    }
-
-    const clearErrors = () => {
-        clearErrorTimeout()
+    if (message) {
+      errorTimeout = setTimeout(() => {
         error.value = ''
-        Object.keys(errors).forEach(key => errors[key] = false)
+        Object.keys(errors).forEach((key) => (errors[key] = false))
+        errorTimeout = null
+      }, ERROR_DISPLAY_DURATION)
     }
+  }
 
-    onUnmounted(clearErrorTimeout)
+  const clearErrors = () => {
+    clearErrorTimeout()
+    error.value = ''
+    Object.keys(errors).forEach((key) => (errors[key] = false))
+  }
 
-    return { error, errors, setError, clearErrors }
+  onUnmounted(clearErrorTimeout)
+
+  return { error, errors, setError, clearErrors }
 }
