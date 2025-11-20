@@ -14,6 +14,18 @@ interface ErrorResult {
     field: 'email' | null; 
 }
 
+interface AppError {
+    message: string;
+}
+
+function isAppError(error: unknown): error is AppError {
+    return (
+        typeof error === 'object' &&
+        error !== null &&
+        'message' in error 
+    );
+}
+
 export function validateRegistrationForm(email: string, password: string, confirmPassword: string, users: User[] = []): ValidateResult {
     if (!email || !password || !confirmPassword) {
         return { isValid: false, error: ERROR_MESSAGES.FILL_ALL_FIELDS, field: null }
@@ -34,10 +46,14 @@ export function validateRegistrationForm(email: string, password: string, confir
     return { isValid: true, error: '', field: null }
 }
 
-export function handleRegistrationError(error: any): ErrorResult{
-    if (error?.message?.includes('Email already registered')) {
-      return { message: ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED, field: 'email' }
+export function handleRegistrationError(error: unknown): ErrorResult{
+    if (isAppError(error)) {
+        if (error?.message?.includes('Email already registered')) {
+          return { message: ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED, field: 'email' }
+        }
+
+        return { message: error?.message || ERROR_MESSAGES.REGISTRATION_FAILED, field: null }
     }
 
-    return { message: error?.message || ERROR_MESSAGES.REGISTRATION_FAILED, field: null }
+    return { message: ERROR_MESSAGES.REGISTRATION_FAILED, field: null }
 }

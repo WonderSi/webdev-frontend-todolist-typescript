@@ -4,7 +4,7 @@
             type="checkbox" 
             class="task-item__checkbox" 
             :id="task.id" 
-            v-model="task.completed"
+            :checked="task.completed"
             @change="$emit('toggle',task.id)"
         />
         <div class="task-item__content">

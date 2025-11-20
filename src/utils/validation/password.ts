@@ -8,7 +8,7 @@ export function validatePasswordStrength(password: string): string {
     if (!/[A-Z]/.test(password)) return ERROR_MESSAGES.PASSWORD_NO_UPPERCASE
     if (!/[a-z]/.test(password)) return ERROR_MESSAGES.PASSWORD_NO_LOWERCASE
     if (!/\d/.test(password)) return ERROR_MESSAGES.PASSWORD_NO_NUMBER
-    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
         return ERROR_MESSAGES.PASSWORD_NO_SPECIAL
     }
 

@@ -34,7 +34,7 @@
     import { ref, watch, nextTick } from 'vue';
 
     const props = defineProps<{
-        open: Boolean
+        open: boolean
     }>();
 
     const emit = defineEmits<{

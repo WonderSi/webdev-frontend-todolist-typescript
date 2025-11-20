@@ -1,6 +1,6 @@
 <template>
     <div class="todo-page">
-        <Header @logout="handleLogout"/>
+        <AppHeader @logout="handleLogout"/>
         <TodoList />
     </div>
 </template>
@@ -8,7 +8,7 @@
 <script setup lang="ts">
     import { useRouter } from 'vue-router'
     import { useUserStore } from '@/stores/useUserStore'
-    import Header from '@cmp/Header.vue'
+    import AppHeader from '@cmp/AppHeader.vue'
     import TodoList from '@cmp/TodoList.vue'
 
     const router = useRouter()
