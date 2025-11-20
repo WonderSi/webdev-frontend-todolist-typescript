@@ -37,16 +37,18 @@
     </div>
 </template>
 
-<script setup>
-    import { ref, computed, onMounted, onUnmounted, inject } from 'vue';
+<script setup lang="ts">
+    import { ref, computed, onMounted, onUnmounted} from 'vue';
     import { useTodoStore } from '@/stores/useTodoStore';
 
+    type FilterType = 'all' | 'complete' | 'incomplete';
+
     const todoStore = useTodoStore()
-    const isOpen = ref(false);
-    const dropdownRef = ref(null);
+    const isOpen = ref<boolean>(false);
+    const dropdownRef = ref<HTMLDivElement | null>(null);
 
     const currentFilterText = computed(() => {
-        const filterMap = {
+        const filterMap: Record<string, string> = {
             'all': 'ALL',
             'complete': 'COMPLETE',
             'incomplete': 'INCOMPLETE'
@@ -54,18 +56,18 @@
         return filterMap[todoStore.currentFilter] || 'ALL';
     })
 
-    function toggleDropdown(e) {
+    function toggleDropdown(e: MouseEvent) {
         e.stopPropagation();
         isOpen.value = !isOpen.value;
     }
 
-    function selectFilter(filter) {
+    function selectFilter(filter: FilterType) {
         todoStore.setFilter(filter)
         isOpen.value = false
     }
 
-    function handleClickOutside(e) {
-        if (dropdownRef.value && !dropdownRef.value.contains(e.target)) {
+    function handleClickOutside(e: MouseEvent) {
+        if (dropdownRef.value && e.target instanceof Node && !dropdownRef.value.contains(e.target)) {
             isOpen.value = false;
         }
     }

@@ -2,7 +2,18 @@ import { validateEmail } from './email'
 import { validatePasswordLogin } from './password'
 import { ERROR_MESSAGES } from './constants'
 
-export function validateLoginForm(email, password) {
+interface ValidationResult {
+    isValid: boolean;
+    error: string;
+    field: 'email' | 'password' | null;
+}
+
+interface ErrorResult {
+    message: string;
+    field: 'email' | 'password' | null;
+}
+
+export function validateLoginForm(email: string, password: string): ValidationResult {
     const emailError = validateEmail(email)
     if (emailError) return { isValid: false, error: emailError, field: 'email' }
 
@@ -12,7 +23,7 @@ export function validateLoginForm(email, password) {
     return { isValid: true, error: '', field: null }
 }
 
-export function handleLoginError(error) {
+export function handleLoginError(error: any): ErrorResult {
     switch (error?.code) {
         case 'USER_NOT_FOUND':
             return { message: 'User with this email does not exist', field: 'email' }

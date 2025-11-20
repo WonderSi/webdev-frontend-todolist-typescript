@@ -1,11 +1,13 @@
 import { defineStore } from "pinia"
 import { ref } from 'vue'
 
+type Theme = 'light' | 'dark'
+
 export const useThemeStore = defineStore('theme', () => {
-    const currentTheme = ref('light')
+    const currentTheme = ref<Theme>('light')
 
     function init() {
-        const savedTheme = localStorage.getItem('todoTheme')
+        const savedTheme = localStorage.getItem('todoTheme') as Theme | null
         if (savedTheme) {
             currentTheme.value = savedTheme
             applyTheme(savedTheme)
@@ -14,18 +16,18 @@ export const useThemeStore = defineStore('theme', () => {
         }
     }
 
-    function applyTheme(theme) {
+    function applyTheme(theme: Theme) {
         document.documentElement.setAttribute('data-theme', theme)
         localStorage.setItem('todoTheme', theme)
         currentTheme.value = theme
     }
 
     function toggleTheme() {
-        const newTheme = currentTheme.value === 'dark' ? 'light' : 'dark'
+        const newTheme: Theme = currentTheme.value === 'dark' ? 'light' : 'dark'
         applyTheme(newTheme)
     }
 
-    function getCurrentTheme() {
+    function getCurrentTheme(): Theme {
         return currentTheme.value
     }
 
@@ -38,6 +40,6 @@ export const useThemeStore = defineStore('theme', () => {
 }, {
     persist: {
         key: 'todo-theme',
-        paths: ['currentTheme']
+        pick: ['currentTheme']
     }
 })

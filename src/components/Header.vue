@@ -14,11 +14,15 @@
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import SearchBar from '@cmp/SearchBar.vue'
     import FiltersDropdown from '@cmp/FiltersDropdown.vue'
     import ThemeToggle from '@cmp/ThemeToggle.vue'
     import OutIcon from '@cmp/OutIcon.vue';
+
+    defineEmits<{
+        (e: 'logout'): void
+    }>()
 </script>
 
 <style scoped lang="scss">

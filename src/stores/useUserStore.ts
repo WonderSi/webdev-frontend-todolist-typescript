@@ -1,18 +1,29 @@
 import { defineStore } from "pinia"
 import { ref, computed } from 'vue'
 
-export const useUserStore = defineStore('user', () => {
-    const currentUser = ref(null)
-    const users = ref([])
-    const initialized = ref(false)
+export interface User {
+    id: string;
+    email: string;
+    password?: string;
+    createAt?: string;
+}
 
-    const isAuthenticated = computed(() => currentUser.value !== null)
+interface AppError extends Error {
+    code?: string;
+}
+
+export const useUserStore = defineStore('user', () => {
+    const currentUser = ref<User | null>(null)
+    const users = ref<User[]>([])
+    const initialized = ref<boolean>(false)
+
+    const isAuthenticated = computed<boolean>(() => currentUser.value !== null)
 
     function init() {
         if (initialized.value) return
 
         if (currentUser.value) {
-            const userExists = users.value.find(u => u.id == currentUser.value.id)
+            const userExists = users.value.find(u => u.id == currentUser.value!.id)
             if(!userExists) {
                 currentUser.value = null
             }
@@ -21,7 +32,7 @@ export const useUserStore = defineStore('user', () => {
         initialized.value = true
     }
 
-    function register(email, password) {
+    function register(email: string, password: string): boolean {
         const exists = users.value.find(u => u.email === email)
         if (exists) {
             throw new Error('Email already registered')
@@ -40,17 +51,17 @@ export const useUserStore = defineStore('user', () => {
         return true
     }
 
-    function login(email, password) {
+    function login(email: string, password: string): boolean {
         const user = users.value.find(u => u.email === email)
 
         if (!user) {
-            const error = new Error('User with this email does not exist')
+            const error: AppError = new Error('User with this email does not exist')
             error.code = 'USER_NOT_FOUND'
             throw error
         }
 
         if (user.password !== password) {
-            const error = new Error('Invalid password')
+            const error: AppError = new Error('Invalid password')
             error.code = 'INVALID_PASSWORD'
             throw error
         }
@@ -76,6 +87,6 @@ export const useUserStore = defineStore('user', () => {
 }, {
     persist: {
         key: 'todo-current-user',
-        paths: ['currentUser', 'users']
+        pick: ['currentUser', 'users']
     }
 })

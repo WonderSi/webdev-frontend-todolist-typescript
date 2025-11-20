@@ -1,6 +1,7 @@
 import { ERROR_MESSAGES } from './constants'
+import { User } from '@/stores/useUserStore'
 
-export function validateEmail(email) {
+export function validateEmail(email: string): string {
     if (!email?.trim()) return ERROR_MESSAGES.EMAIL_REQUIRED
 
     const trimmedEmail = email.trim()
@@ -15,7 +16,7 @@ export function validateEmail(email) {
     return ''
 }
 
-export function checkEmailAvailability(email, users = []) {
+export function checkEmailAvailability(email: string, users: User[] = []): string {
     if (!email || !users.length) return ''
 
     const exists = users.find(user => 
@@ -24,5 +25,3 @@ export function checkEmailAvailability(email, users = []) {
     
     return exists ? ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED : ''
 }
-
-

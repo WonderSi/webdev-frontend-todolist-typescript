@@ -4,8 +4,7 @@
             type="text" 
             class="search-bar__input" 
             placeholder="Search note..."
-            v-model="todoStore.searchQuery"
-            @input="handleSearch"    
+            v-model="todoStore.searchQuery"   
         >
         <button class="search-bar__submit">
             <svg width="21" height="21" viewBox="0 0 21 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -15,16 +14,10 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { useTodoStore } from '@/stores/useTodoStore';
 
     const todoStore = useTodoStore()
-
-    function handleSearch() {
-        if (todoListRef?.value) {
-            todoListRef.value.setSearchQuery(searchQuery.value);
-        }
-    }
 </script>
 
 <style scoped lang="scss">

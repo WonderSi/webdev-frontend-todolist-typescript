@@ -5,7 +5,7 @@
             class="task-item__checkbox" 
             :id="task.id" 
             v-model="task.completed"
-            @change="$emit('toggle','task.id')"
+            @change="$emit('toggle',task.id)"
         />
         <div class="task-item__content">
             <span 
@@ -53,22 +53,29 @@
     </li>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { ref, nextTick } from 'vue';
 
-    const props = defineProps({
-        task: {
-            type: Object,
-            required: true
-        }
-    });
+    interface Task {
+        id: string;
+        text: string;
+        completed: boolean;
+    }
+    
+    const props = defineProps<{
+        task: Task
+    }>();
 
-    const emit = defineEmits(['toggle', 'delete', 'edit']);
+    const emit = defineEmits<{
+        (e: 'toggle', id: string): void,
+        (e: 'delete', id: string): void, 
+        (e: 'edit', payload: {id: string, newText: string}) :void
+    }>();
 
-    const isEditing = ref(false);
-    const isRemoving = ref(false);
-    const editText = ref('');
-    const editInput = ref(null);
+    const isEditing = ref<boolean>(false);
+    const isRemoving = ref<boolean>(false);
+    const editText = ref<string>('');
+    const editInput = ref<HTMLInputElement | null>(null);
 
     function startEdit() {
         if (props.task.completed) {

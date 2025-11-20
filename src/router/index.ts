@@ -1,7 +1,14 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 import { useUserStore } from "@/stores/useUserStore"
 
-const routes = [
+declare module 'vue-router' {
+    interface RouteMeta {
+        requiresAuth?: boolean
+        requiresGuest?: boolean
+    }
+}
+
+const routes: Array<RouteRecordRaw> = [
     {
         path: '/login',
         name: 'Login',

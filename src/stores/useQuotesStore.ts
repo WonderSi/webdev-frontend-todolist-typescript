@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import { ref, computed } from 'vue'
 
 export const useQuotesStore = defineStore('quotes', () => {
-    const quotes = ref([
+    const quotes = ref<string[]>([
         "Тяжело в учении, легко в очислени.",
         "Сниму квартиру. Порядок на районе гарантирую.",
         "Если заблудился в лесу, иди домой.",
@@ -91,7 +91,7 @@ export const useQuotesStore = defineStore('quotes', () => {
         "Это нормально, если я вам не нравлюсь, ведь не у всех есть хороший вкус."
     ])
 
-    const images = ref([
+    const images = ref<string[]>([
         'jason-michael-statham-1.png',
         'jason-michael-statham-2.png',
         'jason-michael-statham-3.png',
@@ -103,11 +103,11 @@ export const useQuotesStore = defineStore('quotes', () => {
         'jason-michael-statham-9.png',
     ])
 
-    const currentIndex = ref(0)
+    const currentIndex = ref<number>(0)
 
-    const currentQuote = computed(() => quotes.value[currentIndex.value])
+    const currentQuote = computed<string>(() => quotes.value[currentIndex.value])
 
-    const currentImage = computed(() => {
+    const currentImage = computed<string>(() => {
         const imageIndex = currentIndex.value % images.value.length
         return images.value[imageIndex]
     })
@@ -127,6 +127,6 @@ export const useQuotesStore = defineStore('quotes', () => {
 }, {
     persist: {
         storage: localStorage,
-        paths: ['currentIndex']
+        pick: ['currentIndex']
     }
 })

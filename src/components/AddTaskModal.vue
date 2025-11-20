@@ -30,17 +30,20 @@
     </Teleport>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { ref, watch, nextTick } from 'vue';
 
-    const props = defineProps({
+    const props = defineProps<{
         open: Boolean
-    });
+    }>();
 
-    const emit = defineEmits(['close', 'add-task']);
+    const emit = defineEmits<{
+        (e: 'close'): void; 
+        (e: 'add-task', text: string): void;
+    }>();
 
-    const newTaskText = ref('');
-    const taskInput = ref(null);
+    const newTaskText = ref<string>('');
+    const taskInput = ref<HTMLInputElement | null>(null);
 
     watch(() => props.open, (isOpen) => {
         if (isOpen) {

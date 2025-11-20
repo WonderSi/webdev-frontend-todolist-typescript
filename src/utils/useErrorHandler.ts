@@ -2,15 +2,22 @@ import { ref, reactive, onUnmounted } from "vue"
 
 const ERROR_DISPLAY_DURATION = 3000
 
+type FieldErrors = {
+    email: boolean;
+    password: boolean;
+    confirmPassword: boolean;
+    [key: string]: boolean;
+}
+
 export function useErrorHandler() {
-    const error = ref('')
-    const errors = reactive({
+    const error = ref<string>('')
+    const errors = reactive<FieldErrors>({
         email: false,
         password: false,
         confirmPassword: false
     })
 
-    let errorTimeout = null
+    let errorTimeout: ReturnType<typeof setTimeout> | null = null
 
     const clearErrorTimeout = () => {
         if (errorTimeout) {
@@ -19,13 +26,15 @@ export function useErrorHandler() {
         }
     }
 
-    const setError = (message, field = null) => {
+    const setError = (message: string, field: string | null = null) => {
         clearErrorTimeout()
 
         Object.keys(errors).forEach(key => errors[key] = false)
 
         error.value = message
-        if (field) errors[field] = true
+        if (field && field in errors) {
+            errors[field] = true
+        }
 
         if (message) {
             errorTimeout = setTimeout(() => {

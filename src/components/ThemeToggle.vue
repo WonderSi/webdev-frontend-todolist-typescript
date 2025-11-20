@@ -8,7 +8,7 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
     import { onMounted } from 'vue';
     import { useThemeStore } from '@/stores/useThemeStore';
     import SunThemeIcon from './SunThemeIcon.vue';

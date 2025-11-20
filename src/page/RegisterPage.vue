@@ -91,7 +91,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { ref } from 'vue'
     import { useRouter } from 'vue-router'
     import { useUserStore } from '@/stores/useUserStore'
@@ -103,16 +103,16 @@
     const router = useRouter()
     const userStore = useUserStore()
 
-    const email = ref('')
-    const password = ref('')
-    const confirmPassword = ref('')
-    const showPassword = ref(false)
-    const showConfirmPassword = ref(false)
-    const isLoading = ref(false)
+    const email = ref<string>('')
+    const password = ref<string>('')
+    const confirmPassword = ref<string>('')
+    const showPassword = ref<boolean>(false)
+    const showConfirmPassword = ref<boolean>(false)
+    const isLoading = ref<boolean>(false)
 
     const { error, errors, setError, clearErrors } = useErrorHandler()
 
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+    const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
 
     async function handleRegister() {
         clearErrors()
@@ -125,7 +125,7 @@
         )
         
         if (!validation.isValid) {
-            setError(validation.error, validation.field)
+            setError(validation.error || '', validation.field)
             return
         }
 
@@ -137,7 +137,7 @@
             await router.push('/')
         } catch (e) {
             const errorInfo = handleRegistrationError(e)
-            setError(userInfo.message, errorInfo.field)
+            setError(errorInfo.message, errorInfo.field)
         } finally {
             isLoading.value = false
         }

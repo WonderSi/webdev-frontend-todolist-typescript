@@ -145,42 +145,46 @@
     </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { ref } from 'vue';
     import { useTodoStore } from '@/stores/useTodoStore';
     import TodoItem from '@cmp/TodoItem.vue';
     import AddButton from '@cmp/AddButton.vue';
     import AddTaskModal from '@cmp/AddTaskModal.vue';
 
+    interface EditPayload {
+        id: string;
+        newText: string;
+    }
 
     const todoStore = useTodoStore()
-    const modalOpen = ref(false);
+    const modalOpen = ref<boolean>(false);
 
     function handleAddButtonClick() {
         modalOpen.value = true;
     }
 
-    function addTask(text) {
+    function addTask(text: string) {
         todoStore.addTask(text)
     }
 
-    function handleToggle(taskId) {
+    function handleToggle(taskId: string) {
         todoStore.toggleTask(taskId)
     }
 
-    function handleDelete(taskId) {
+    function handleDelete(taskId: string) {
         todoStore.deleteTask(taskId)
     }
 
-    function handleEdit(payload) {
+    function handleEdit(payload: EditPayload) {
         todoStore.editTask(payload.id, payload.newText)
     }
 
-    function setSearchQuery(query) {
+    function setSearchQuery(query: string) {
         todoStore.setSearchQuery(query)
     }
 
-    function setFilter(filter) {
+    function setFilter(filter: 'all' | 'complete' | 'incomplete') {
         todoStore.setFilter(filter)
     }
 

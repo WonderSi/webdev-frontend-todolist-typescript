@@ -16,7 +16,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { useRouter } from 'vue-router'
     import OutIcon from '@cmp/OutIcon.vue'
     import { useQuotesStore } from '@/stores/useQuotesStore'
@@ -30,7 +30,7 @@
         router.back()
     }
 
-    const getImageUrl = (imageName) => {
+    const getImageUrl = (imageName: string) => {
         return new URL(`/src/assets/img/${imageName}`, import.meta.url).href
     }
 </script>
