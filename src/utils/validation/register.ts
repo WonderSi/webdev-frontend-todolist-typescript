@@ -3,7 +3,7 @@ import {
   validatePasswordStrength,
   validatePasswordConfirmation
 } from './password'
-import { ERROR_MESSAGES } from './constants'
+import { ERROR_MESSAGES } from '@/utils/validation/constants'
 import { User } from '@/stores/useUserStore'
 
 interface ValidateResult {

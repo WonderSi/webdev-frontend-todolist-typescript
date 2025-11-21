@@ -10,8 +10,8 @@
 <script setup lang="ts">
   import { onMounted } from 'vue'
   import { useThemeStore } from '@/stores/useThemeStore'
-  import SunThemeIcon from './SunThemeIcon.vue'
-  import MoonThemeIcon from './MoonThemeIcon.vue'
+  import SunThemeIcon from '@cmp/icons/SunThemeIcon.vue'
+  import MoonThemeIcon from '@cmp/icons/MoonThemeIcon.vue'
 
   const themeStore = useThemeStore()
 

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
   import { useRouter } from 'vue-router'
-  import OutIcon from '@cmp/OutIcon.vue'
+  import OutIcon from '@/components/icons/OutIcon.vue'
   import { useQuotesStore } from '@/stores/useQuotesStore'
   import { storeToRefs } from 'pinia'
 

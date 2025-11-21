@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from './constants'
+import { ERROR_MESSAGES } from '@/utils/validation/constants'
 import { User } from '@/stores/useUserStore'
 
 export function validateEmail(email: string): string {

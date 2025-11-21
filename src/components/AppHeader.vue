@@ -18,7 +18,7 @@
   import SearchBar from '@cmp/SearchBar.vue'
   import FiltersDropdown from '@cmp/FiltersDropdown.vue'
   import ThemeToggle from '@cmp/ThemeToggle.vue'
-  import OutIcon from '@cmp/OutIcon.vue'
+  import OutIcon from '@/components/icons/OutIcon.vue'
 
   defineEmits<{
     (e: 'logout'): void

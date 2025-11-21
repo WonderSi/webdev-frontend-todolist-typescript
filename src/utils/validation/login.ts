@@ -1,6 +1,6 @@
 import { validateEmail } from './email'
 import { validatePasswordLogin } from './password'
-import { ERROR_MESSAGES } from './constants'
+import { ERROR_MESSAGES } from '@/utils/validation/constants'
 
 interface ValidationResult {
   isValid: boolean

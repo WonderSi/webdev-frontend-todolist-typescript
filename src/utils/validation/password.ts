@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from './constants'
+import { ERROR_MESSAGES } from '@/utils/validation/constants'
 
 export function validatePasswordStrength(password: string): string {
   if (!password) return ERROR_MESSAGES.PASSWORD_REQUIRED

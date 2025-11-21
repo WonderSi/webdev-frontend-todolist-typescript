@@ -75,8 +75,8 @@
   import { useUserStore } from '@/stores/useUserStore'
   import { validateLoginForm, handleLoginError } from '@/utils/validation/login'
   import { useErrorHandler } from '@/utils/useErrorHandler'
-  import EyeOpenIcon from '@cmp/EyeOpenIcon.vue'
-  import EyeClosedIcon from '@cmp/EyeClosedIcon.vue'
+  import EyeOpenIcon from '@/components/icons/EyeOpenIcon.vue'
+  import EyeClosedIcon from '@/components/icons/EyeClosedIcon.vue'
 
   const router = useRouter()
   const userStore = useUserStore()
