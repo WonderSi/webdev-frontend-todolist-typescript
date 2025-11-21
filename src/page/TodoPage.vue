@@ -8,8 +8,8 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router'
   import { useUserStore } from '@/stores/useUserStore'
-  import AppHeader from '@cmp/AppHeader.vue'
-  import TodoList from '@cmp/TodoList.vue'
+  import AppHeader from '@/components/todo/AppHeader.vue'
+  import TodoList from '@cmp/todo/TodoList.vue'
 
   const router = useRouter()
   const userStore = useUserStore()

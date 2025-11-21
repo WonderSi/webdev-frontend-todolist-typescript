@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-  import SearchBar from '@cmp/SearchBar.vue'
-  import FiltersDropdown from '@cmp/FiltersDropdown.vue'
-  import ThemeToggle from '@cmp/ThemeToggle.vue'
+  import SearchBar from '@/components/todo/SearchBar.vue'
+  import FiltersDropdown from '@/components/todo/FiltersDropdown.vue'
+  import ThemeToggle from '@/components/todo/ThemeToggle.vue'
   import OutIcon from '@/components/icons/OutIcon.vue'
 
   defineEmits<{
