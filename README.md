@@ -11,12 +11,12 @@
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
 
-
 **[🚀 Демо версия (Deploy)](https://webdev-frontend-todolist-typescript.vercel.app)**
 
 </div>
 
 ---
+
 ## 📝 О проекте
 
 Учебный проект по полной миграции веб-приложения To-Do List с JavaScript на **TypeScript**.
@@ -35,14 +35,16 @@
 - [x] Приложение полностью функционирует
 
 ## 🛠️ Стек технологий
-| Категория | Технологии |
-|-----------|------------|
-| **Core** | Vue 3, TypeScript |
-| **State** | Pinia (с персистенцией) |
-| **Styles** | SCSS |
-| **Tools** | Vite, ESLint, Prettier |
+
+| Категория  | Технологии              |
+| ---------- | ----------------------- |
+| **Core**   | Vue 3, TypeScript       |
+| **State**  | Pinia (с персистенцией) |
+| **Styles** | SCSS                    |
+| **Tools**  | Vite, ESLint, Prettier  |
 
 ## 📂 Архитектура
+
 ```
 src/
 ├─ assets/
@@ -73,39 +75,38 @@ vite.config.ts
 ## Установка / Запуск
 
 ### 1. Клонирование
+
 ```
 git clone https://github.com/WonderSi/webdev-frontend-todolist-typescript.git
 cd webdev-frontend-todolist-typescript
 ```
+
 ### 2. Установка зависимостей (yarn)
+
 ```
 yarn install
 ```
+
 ### 3. Проверка кода (Listener & Formst)
+
 ```
 yarn lint
 yarn format
 ```
+
 ### 4. Запуск dev-сервер:
+
 ```
 yarn dev
 ```
+
 Приложение будет доступно по адресу: `http://localhost:5173`
 
 ---
+
 <div align="center">
 
 **Выполнил:** Козлов Кирилл (ФИТ-231) <br/>
 Study Project 2025
 
 </div>
-
-
-
-
-
-
-
-
-
-
