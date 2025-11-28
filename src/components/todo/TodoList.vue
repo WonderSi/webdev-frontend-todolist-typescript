@@ -1,8 +1,8 @@
 <template>
   <main class="todo-list">
-    <ul class="todo-list__tasks" v-show="todoStore.filteredTasks.length > 0">
+    <ul class="todo-list__tasks" v-show="sortedTasks.length > 0">
       <TodoItem
-        v-for="task in todoStore.filteredTasks"
+        v-for="task in sortedTasks"
         :key="task.id"
         :task="task"
         @toggle="handleToggle"
@@ -24,18 +24,26 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import { useTodoStore } from '@/stores/useTodoStore'
   import TodoItem from '@cmp/todo/TodoItem.vue'
-  import AddButton from '@cmp/AddButton.vue'
+  import AddButton from '@cmp/todo/AddButton.vue'
   import AddTaskModal from '@cmp/todo/AddTaskModal.vue'
   import EmptyIcon from '@cmp/icons/EmptyIcon.vue'
-  import type { EditPayload } from '@/types/todo-types'
+  import type { EditPayload, FilterType } from '@/types/todo-types'
 
   // ====== STATE =======
 
   const todoStore = useTodoStore()
   const modalOpen = ref<boolean>(false)
+
+  // ====== COMPUTED =======
+
+  const sortedTasks = computed(() => {
+    return [...todoStore.filteredTasks].sort((a, b) => {
+      return Number(a.completed) - Number(b.completed)
+    })
+  })
 
   // ====== ACTIONS =======
 
@@ -63,7 +71,7 @@
     todoStore.setSearchQuery(query)
   }
 
-  function setFilter(filter: 'all' | 'complete' | 'incomplete') {
+  function setFilter(filter: FilterType) {
     todoStore.setFilter(filter)
   }
 
