@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
-type Theme = 'light' | 'dark'
+import { Theme } from '@/types/theme-types'
 
 export const useThemeStore = defineStore(
   'theme',

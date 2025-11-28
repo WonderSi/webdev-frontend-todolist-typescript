@@ -1,15 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useUserStore } from '@/stores/useUserStore'
-
-export interface Task {
-  id: string
-  text: string
-  completed: boolean
-  userId: string
-}
-
-type FilterType = 'all' | 'complete' | 'incomplete'
+import type { Task, FilterType } from '@/types/todo-types'
 
 export const useTodoStore = defineStore(
   'todo',
@@ -71,7 +63,8 @@ export const useTodoStore = defineStore(
         id: 'task-' + Date.now(),
         text: text,
         completed: false,
-        userId: userId
+        userId: userId,
+        createdAt: Date.now()
       }
       allTasks.value[userId].push(newTask)
     }

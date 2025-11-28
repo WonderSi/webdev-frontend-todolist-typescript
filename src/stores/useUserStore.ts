@@ -1,16 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-
-export interface User {
-  id: string
-  email: string
-  password?: string
-  createAt?: string
-}
-
-interface AppError extends Error {
-  code?: string
-}
+import type { AppError } from '@/types/error-types'
+import type { User } from '@/types/user-types'
 
 export const useUserStore = defineStore(
   'user',
