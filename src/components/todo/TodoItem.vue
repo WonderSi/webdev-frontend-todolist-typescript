@@ -52,15 +52,21 @@
   import DeleteIcon from '@cmp/icons/DeleteIcon.vue'
   import EditIcon from '@cmp/icons/EditIcon.vue'
 
+  // ====== TYPES =======
+
   interface Task {
     id: string
     text: string
     completed: boolean
   }
 
+  // ====== PROPS =======
+
   const props = defineProps<{
     task: Task
   }>()
+
+  // ====== EMITS =======  
 
   const emit = defineEmits<{
     (e: 'toggle', id: string): void
@@ -68,10 +74,14 @@
     (e: 'edit', payload: { id: string; newText: string }): void
   }>()
 
+  // ====== STATE =======
+
   const isEditing = ref<boolean>(false)
   const isRemoving = ref<boolean>(false)
   const editText = ref<string>('')
   const editInput = ref<HTMLInputElement | null>(null)
+
+  // ====== ACTIONS =======
 
   function startEdit() {
     if (props.task.completed) {

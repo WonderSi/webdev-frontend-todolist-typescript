@@ -31,13 +31,19 @@
   import AddTaskModal from '@cmp/todo/AddTaskModal.vue'
   import EmptyIcon from '@cmp/icons/EmptyIcon.vue'
 
+  // ====== TYPES =======
+
   interface EditPayload {
     id: string
     newText: string
   }
 
+  // ====== STATE =======
+
   const todoStore = useTodoStore()
   const modalOpen = ref<boolean>(false)
+
+  // ====== ACTIONS =======
 
   function handleAddButtonClick() {
     modalOpen.value = true
@@ -66,6 +72,8 @@
   function setFilter(filter: 'all' | 'complete' | 'incomplete') {
     todoStore.setFilter(filter)
   }
+
+  // ====== EXPOSE =======
 
   defineExpose({
     setSearchQuery,

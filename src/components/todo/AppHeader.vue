@@ -20,6 +20,8 @@
   import ThemeToggle from '@/components/todo/ThemeToggle.vue'
   import OutIcon from '@/components/icons/OutIcon.vue'
 
+  // ======= EMITS =======
+
   defineEmits<{
     (e: 'logout'): void
   }>()

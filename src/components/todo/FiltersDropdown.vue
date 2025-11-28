@@ -57,11 +57,17 @@
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useTodoStore } from '@/stores/useTodoStore'
 
+  // ======= TYPES =======
+
   type FilterType = 'all' | 'complete' | 'incomplete'
+
+  // ======= STATE =======
 
   const todoStore = useTodoStore()
   const isOpen = ref<boolean>(false)
   const dropdownRef = ref<HTMLDivElement | null>(null)
+
+  // ======= COMPUTED =======
 
   const currentFilterText = computed(() => {
     const filterMap: Record<string, string> = {
@@ -71,6 +77,8 @@
     }
     return filterMap[todoStore.currentFilter] || 'ALL'
   })
+
+  // ======= ACTIONS =======
 
   function toggleDropdown(e: MouseEvent) {
     e.stopPropagation()
@@ -91,6 +99,8 @@
       isOpen.value = false
     }
   }
+
+  // ======= LIFECYCLE =======
 
   onMounted(() => {
     document.addEventListener('click', handleClickOutside)

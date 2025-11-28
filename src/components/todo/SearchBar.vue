@@ -16,6 +16,8 @@
   import { useTodoStore } from '@/stores/useTodoStore'
   import SearchIcon from '@cmp/icons/SearchIcon.vue'
 
+  // ======= STATE =======
+
   const todoStore = useTodoStore()
 </script>
 

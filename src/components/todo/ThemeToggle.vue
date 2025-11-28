@@ -13,7 +13,11 @@
   import SunThemeIcon from '@cmp/icons/SunThemeIcon.vue'
   import MoonThemeIcon from '@cmp/icons/MoonThemeIcon.vue'
 
+  // ====== STATE =======
+
   const themeStore = useThemeStore()
+
+  // ======= LIFECYCLE =======
 
   onMounted(() => {
     themeStore.init()

@@ -36,17 +36,25 @@
 <script setup lang="ts">
   import { ref, watch, nextTick } from 'vue'
 
+  // ======= PROPS =======
+
   const props = defineProps<{
     open: boolean
   }>()
+
+  // ======= EMITS =======
 
   const emit = defineEmits<{
     (e: 'close'): void
     (e: 'add-task', text: string): void
   }>()
 
+  // ======= STATE =======
+
   const newTaskText = ref<string>('')
   const taskInput = ref<HTMLInputElement | null>(null)
+
+  // ======= WATHERS =======
 
   watch(
     () => props.open,
@@ -59,6 +67,8 @@
       }
     }
   )
+
+  // ======= ACTIONS =======
 
   function applyTask() {
     const text = newTaskText.value.trim()
