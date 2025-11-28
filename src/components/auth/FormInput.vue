@@ -17,6 +17,9 @@
 </template>
 
 <script setup lang="ts">
+
+  // ======= PROPS =======
+
   defineProps<{
     id: string
     label: string
@@ -27,6 +30,8 @@
     disabled?: boolean
     hasError?: boolean
   }>()
+
+  // ======= EMITS =======
 
   const emit = defineEmits<{
     'update:modelValue': [value: string]

@@ -6,6 +6,9 @@
 </template>
 
 <script setup lang="ts">
+
+  // ======= PROPS =======
+
   defineProps<{
     message: string
     linkText: string

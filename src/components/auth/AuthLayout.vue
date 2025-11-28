@@ -18,6 +18,8 @@
 <script setup lang="ts">
   import ErrorMessage from './ErrorMessage.vue'
 
+  // ======= PROPS =======
+
   defineProps<{
     error?: string
   }>()

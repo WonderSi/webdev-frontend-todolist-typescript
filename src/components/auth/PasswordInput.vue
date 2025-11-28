@@ -33,6 +33,8 @@
   import EyeOpenIcon from '../icons/EyeOpenIcon.vue'
   import EyeClosedIcon from '../icons/EyeClosedIcon.vue'
 
+  // ======= PROPS =======
+
   defineProps<{
     id: string
     label: string
@@ -43,11 +45,17 @@
     hasError?: boolean
   }>()
 
+  // ======= EMITS =======
+
   const emit = defineEmits<{
     'update:modelValue': [value: string]
   }>()
 
+  // ======= STATE =======
+
   const showPassword = ref<boolean>(false)
+
+  // ======= ACTIONS =======
 
   const togglePassword = () => {
     showPassword.value = !showPassword.value
