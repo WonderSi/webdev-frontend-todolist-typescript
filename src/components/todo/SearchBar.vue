@@ -28,7 +28,7 @@
 
     &__submit {
       position: absolute;
-      top: 18%;
+      top: 0%;
       right: 2%;
       color: var(--input);
       border: none;
@@ -41,10 +41,6 @@
   @include tablet {
     .search-bar {
       width: 425px;
-
-      &__submit {
-        right: 3%;
-      }
     }
   }
 
@@ -56,8 +52,7 @@
       }
 
       &__submit {
-        top: 15%;
-        right: 4%;
+        top: -8%;
       }
     }
   }
