@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import PlusIcon from './icons/PlusIcon.vue'
+  import PlusIcon from '@cmp/icons/PlusIcon.vue'
 </script>
 
 <style scoped lang="scss">
