@@ -1,11 +1,11 @@
 <template>
   <button class="add-button" @click="$emit('click')">
-    <PlusIcon/>
+    <PlusIcon />
   </button>
 </template>
 
 <script setup lang="ts">
-  import PlusIcon from './icons/PlusIcon.vue';
+  import PlusIcon from './icons/PlusIcon.vue'
 </script>
 
 <style scoped lang="scss">

@@ -113,27 +113,8 @@
       top: 0;
       right: 0;
 
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--button);
-        color: var(--button-text);
-        padding: 8px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-
-        &:hover {
-          background: var(--button-focus);
-        }
-      }
-
       .logout-btn {
         padding: 8px 9px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
       }
     }
   }
