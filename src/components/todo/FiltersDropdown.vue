@@ -56,10 +56,7 @@
 <script setup lang="ts">
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useTodoStore } from '@/stores/useTodoStore'
-
-  // ======= TYPES =======
-
-  type FilterType = 'all' | 'complete' | 'incomplete'
+  import type { FilterType } from '@/types/todo-types'
 
   // ======= STATE =======
 

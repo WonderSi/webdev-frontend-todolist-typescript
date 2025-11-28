@@ -51,14 +51,7 @@
   import { ref, nextTick } from 'vue'
   import DeleteIcon from '@cmp/icons/DeleteIcon.vue'
   import EditIcon from '@cmp/icons/EditIcon.vue'
-
-  // ====== TYPES =======
-
-  interface Task {
-    id: string
-    text: string
-    completed: boolean
-  }
+  import type { Task } from '@/types/todo-types'
 
   // ====== PROPS =======
 

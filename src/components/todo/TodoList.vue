@@ -30,13 +30,7 @@
   import AddButton from '@cmp/AddButton.vue'
   import AddTaskModal from '@cmp/todo/AddTaskModal.vue'
   import EmptyIcon from '@cmp/icons/EmptyIcon.vue'
-
-  // ====== TYPES =======
-
-  interface EditPayload {
-    id: string
-    newText: string
-  }
+  import type { EditPayload } from '@/types/todo-types'
 
   // ====== STATE =======
 
