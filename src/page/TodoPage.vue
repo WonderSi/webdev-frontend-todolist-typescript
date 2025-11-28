@@ -11,8 +11,12 @@
   import AppHeader from '@cmp/AppHeader.vue'
   import TodoList from '@cmp/TodoList.vue'
 
+  // ======= STATE =======
+
   const router = useRouter()
   const userStore = useUserStore()
+
+  // ======= ACTIONS =======
 
   function handleLogout() {
     userStore.logout()

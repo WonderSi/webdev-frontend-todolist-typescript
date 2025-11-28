@@ -105,6 +105,8 @@
   import EyeOpenIcon from '@/components/icons/EyeOpenIcon.vue'
   import EyeClosedIcon from '@/components/icons/EyeClosedIcon.vue'
 
+  // ======= STATE ========
+
   const router = useRouter()
   const userStore = useUserStore()
 
@@ -115,10 +117,16 @@
   const showConfirmPassword = ref<boolean>(false)
   const isLoading = ref<boolean>(false)
 
+  // ======= ERROR HANDLING ========
+
   const { error, errors, setError, clearErrors } = useErrorHandler()
+
+  // ======= HELPERS ========
 
   const delay = (ms: number): Promise<void> =>
     new Promise((resolve) => setTimeout(resolve, ms))
+
+  // ======= ACTIONS ========
 
   async function handleRegister() {
     clearErrors()

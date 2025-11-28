@@ -18,20 +18,26 @@
 
 <script setup lang="ts">
   import { useRouter } from 'vue-router'
+  import { storeToRefs } from 'pinia'
   import OutIcon from '@/components/icons/OutIcon.vue'
   import { useQuotesStore } from '@/stores/useQuotesStore'
-  import { storeToRefs } from 'pinia'
+
+  // ======= STATE ========
 
   const router = useRouter()
   const quotesStore = useQuotesStore()
   const { currentQuote, currentImage } = storeToRefs(quotesStore)
 
-  const goBack = () => {
-    router.back()
-  }
+  // ======= HELPERS =======
 
   const getImageUrl = (imageName: string) => {
     return new URL(`/src/assets/img/${imageName}`, import.meta.url).href
+  }
+
+  // ======= ACTIONS ========
+
+  const goBack = () => {
+    router.back()
   }
 </script>
 
