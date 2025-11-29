@@ -59,7 +59,7 @@
     task: Task
   }>()
 
-  // ====== EMITS =======  
+  // ====== EMITS =======
 
   const emit = defineEmits<{
     (e: 'toggle', id: string): void
